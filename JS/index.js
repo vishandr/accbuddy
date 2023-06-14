@@ -347,6 +347,15 @@ function activateAttrButton(event) {
 
 attrButtonsBlock.addEventListener("click", activateAttrButton);
 
+function filterByAttribute(){
+  let activeAttribute = attrButtonsArr.find((btn) => btn.classList.contains("active"))
+  if (activeAttribute.id === "allAcc") {
+    promosection.style.display = "block";
+    return (filteredAccounts = allAccounts);
+  } else 
+  promosection.style.display = "none"
+  return (filteredAccounts = allAccounts.filter((acc) => acc.attribute === activeAttribute.id))
+}
 // function filterByAttribute() {
 //   let activeCategory = categoryBtnArr.find((btn) =>
 //     btn.classList.contains("active")
@@ -373,16 +382,9 @@ attrButtonsBlock.addEventListener("click", activateAttrButton);
 //     ));
 // }
 
-// attrButtonsBlock.onclick = () => {
-//   updatePageWithFilteredAccounts(filterByAttribute());
-// };
-
-// allAcc.onclick = () => {
-//   sale.classList.remove("active");
-//   hot.classList.remove("active");
-//   newOffers.classList.remove("active");
-//   updatePageWithFilteredAccounts(allAccounts);
-// };
+attrButtonsBlock.onclick = () => {
+  updatePageWithFilteredAccounts(allAccountsList, filterByAttribute());
+};
 
 function updateHotAccounts() {
   let hotAccounts = allAccounts.filter((acc) => acc.hot === true);
