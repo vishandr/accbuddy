@@ -259,6 +259,11 @@ updatePageWithFilteredAccounts(allAccountsList, filteredAccounts);
 
 search.oninput = function () {
   updateInputSearch();
+  if (inputSearch.length){
+    promosection.style.display = "none";
+  }else {
+    promosection.style.display = "block";
+  }
   updateNoSearchResult();
   updateFilteredBySearchAccounts();
   updatePageWithFilteredAccounts(allAccountsList, filteredAccounts);
