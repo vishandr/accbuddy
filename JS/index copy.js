@@ -254,7 +254,7 @@ function createAccuntsListOutput(accountsList) {
             <img src="./assests/image/gmail-icons.svg" width="56"
                 height="56" alt="google icons"
                 class="account-types-icons">
-                <button class="ab-button-style buy-button" id=${item.id} onclick="buyButton(event)">Buy</button>
+            <button class="ab-button-style buy-button" id=${item.id} onclick="buyButton(event)">Buy</button>
         </div>
     </div>
 </td>
@@ -270,12 +270,14 @@ function buyButton(event){
 };
 
 let filteredAccounts;
-function updateFilteredBySearchAccounts() {
-  filteredAccounts = allAccounts.filter((account) =>
+// console.log(filteredAccounts)
+function updateFilteredBySearchAccounts(accountsList) {
+  filteredAccounts = accountsList.filter((account) =>
     account.provider.toLowerCase().includes(inputSearchLowercase)
   );
+  // console.log(filteredAccounts)
 }
-updateFilteredBySearchAccounts();
+updateFilteredBySearchAccounts(allAccounts);
 
 function updatePageWithFilteredAccounts(place, filteredArray) {
   place.innerHTML = createAccuntsListOutput(filteredArray);
@@ -285,14 +287,22 @@ updatePageWithFilteredAccounts(allAccountsList, filteredAccounts);
 
 search.oninput = function () {
   updateInputSearch();
+  updateNoSearchResult();
   if (inputSearch.length){
     promosection.style.display = "none";
-  }else {
+    console.log(promosection.style.display)
+  }
+  else {
     promosection.style.display = "block";
   }
-  updateNoSearchResult();
-  updateFilteredBySearchAccounts();
-  updatePageWithFilteredAccounts(allAccountsList, filteredAccounts);
+  if (activeAttribute.id === "allAcc"){
+    updateFilteredBySearchAccounts(allAccounts);
+  } else {
+    updateFilteredBySearchAccounts(filterByAttribute());
+  }
+  // updateFilteredBySearchAccounts();
+  updatePageWithFilteredAccounts(allAccountsList, filterByAttribute());
+  // console.log(filterByAttribute())
 };
 
 //for index.html mouseover activation
@@ -373,15 +383,28 @@ function activateAttrButton(event) {
 
 attrButtonsBlock.addEventListener("click", activateAttrButton);
 
+let activeAttribute = document.querySelector("#allAcc");
+//filtering by Attribute-1 buttons
 function filterByAttribute(){
-  let activeAttribute = attrButtonsArr.find((btn) => btn.classList.contains("active"))
+  activeAttribute = attrButtonsArr.find((btn) => btn.classList.contains("active"))
   if (activeAttribute.id === "allAcc") {
     promosection.style.display = "block";
-    return (filteredAccounts = allAccounts);
+    return allAccounts;
   } else 
   promosection.style.display = "none"
-  return (filteredAccounts = allAccounts.filter((acc) => acc.attribute === activeAttribute.id))
+  return allAccounts.filter((acc) => acc.attribute === activeAttribute.id)
 }
+
+// function filterByAttribute(){
+//   activeAttribute = attrButtonsArr.find((btn) => btn.classList.contains("active"))
+//   if (activeAttribute.id === "allAcc") {
+//     promosection.style.display = "block";
+//     return (filteredAccounts = allAccounts);
+//   } else 
+//   promosection.style.display = "none"
+//   return (filteredAccounts = allAccounts.filter((acc) => acc.attribute === activeAttribute.id))
+// }
+
 // function filterByAttribute() {
 //   let activeCategory = categoryBtnArr.find((btn) =>
 //     btn.classList.contains("active")
