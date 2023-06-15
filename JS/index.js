@@ -270,12 +270,12 @@ function buyButton(event){
 };
 
 let filteredAccounts;
-function updateFilteredBySearchAccounts() {
-  filteredAccounts = allAccounts.filter((account) =>
+function updateFilteredBySearchAccounts(accountsList) {
+  filteredAccounts = accountsList.filter((account) =>
     account.provider.toLowerCase().includes(inputSearchLowercase)
   );
 }
-updateFilteredBySearchAccounts();
+updateFilteredBySearchAccounts(allAccounts);
 
 function updatePageWithFilteredAccounts(place, filteredArray) {
   place.innerHTML = createAccuntsListOutput(filteredArray);
@@ -283,15 +283,19 @@ function updatePageWithFilteredAccounts(place, filteredArray) {
 
 updatePageWithFilteredAccounts(allAccountsList, filteredAccounts);
 
-search.oninput = function () {
-  updateInputSearch();
-  if (inputSearch.length){
+const hidePromo = () => {
+  if (inputSearch.length || activeAttribute.id !== "allAcc"){
     promosection.style.display = "none";
   }else {
     promosection.style.display = "block";
   }
+};
+
+search.oninput = function () {
+  updateInputSearch();
+  hidePromo();
   updateNoSearchResult();
-  updateFilteredBySearchAccounts();
+  updateFilteredBySearchAccounts(filteredByAttr);
   updatePageWithFilteredAccounts(allAccountsList, filteredAccounts);
 };
 
@@ -352,7 +356,6 @@ priceDown.onclick = function () {
 };
 
 //working with Attribut-1 buttons
-
 let attrButtonsBlock = document.querySelector(".ab-account-types-list-tabs");
 let buttons = attrButtonsBlock.querySelectorAll(".account-tabs-btn");
 let attrButtonsArr = Array.from(buttons);
@@ -373,42 +376,24 @@ function activateAttrButton(event) {
 
 attrButtonsBlock.addEventListener("click", activateAttrButton);
 
-function filterByAttribute(){
-  let activeAttribute = attrButtonsArr.find((btn) => btn.classList.contains("active"))
-  if (activeAttribute.id === "allAcc") {
-    promosection.style.display = "block";
-    return (filteredAccounts = allAccounts);
-  } else 
-  promosection.style.display = "none"
-  return (filteredAccounts = allAccounts.filter((acc) => acc.attribute === activeAttribute.id))
-}
-// function filterByAttribute() {
-//   let activeCategory = categoryBtnArr.find((btn) =>
-//     btn.classList.contains("active")
-//   );
+let filteredByAttr = allAccounts;
 
-//   let activeAttribute = attrButtonsArr.find((btn) =>
-//     btn.classList.contains("active")
-//   );
-//   if (activeCategory) {
-//     let filteredByCategory = allAccounts.filter(
-//       (acc) => acc[activeCategory.id] === true
-//     );
-//     if (activeAttribute.id === "allAcc") {
-//       return (filteredAccounts = filteredByCategory);
-//     } else
-//       return (filteredAccounts = filteredByCategory.filter(
-//         (acc) => acc.attribute === activeAttribute.id
-//       ));
-//   } else if (activeAttribute.id === "allAcc") {
-//     return (filteredAccounts = allAccounts);
-//   } else
-//     return (filteredAccounts = allAccounts.filter(
-//       (acc) => acc.attribute === activeAttribute.id
-//     ));
-// }
+function defineActiveAttr(){
+  activeAttribute = attrButtonsArr.find((btn) => btn.classList.contains("active"))
+};
+defineActiveAttr();
+
+function filterByAttribute(){
+  if (activeAttribute.id === "allAcc") {
+    return (filteredByAttr = allAccounts);
+  } else 
+  return (filteredByAttr = allAccounts.filter((acc) => acc.attribute === activeAttribute.id))
+};
 
 attrButtonsBlock.onclick = () => {
+  defineActiveAttr();
+  hidePromo();
+  search.value = "";
   updatePageWithFilteredAccounts(allAccountsList, filterByAttribute());
 };
 
