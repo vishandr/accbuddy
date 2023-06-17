@@ -266,8 +266,16 @@ function createAccuntsListOutput(accountsList) {
 function buyButton(event){
   let id = event.target.id;
   let account = allAccounts.find((acc) => acc.id == id);
-  console.log(account)
+  console.log(account);
+  localStorage.setItem("account", JSON.stringify(account));
 };
+
+// export let account = function buyButton(event){
+//   let id = event.target.id;
+//   let account = allAccounts.find((acc) => acc.id == id);
+//   console.log(account);
+//   return account;
+// };
 
 let filteredAccounts;
 function updateFilteredBySearchAccounts(accountsList) {
