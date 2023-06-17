@@ -254,7 +254,7 @@ function createAccuntsListOutput(accountsList) {
             <img src="./assests/image/gmail-icons.svg" width="56"
                 height="56" alt="google icons"
                 class="account-types-icons">
-                <button class="ab-button-style buy-button" id=${item.id} onclick="buyButton(event)">Buy</button>
+                <a href="./merchant.html"><button class="ab-button-style buy-button" id=${item.id} onclick="buyButton(event)"> Buy</button></a>
         </div>
     </div>
 </td>

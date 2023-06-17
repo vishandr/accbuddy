@@ -208,8 +208,8 @@
                   <div class="ab-order-details-order-info">
                     <div class="ab-order-details-left">
                       <div class="ab-order-title-box">
-                        <h6 class="ab-order-info-title"></h6>
-                        <!-- <h6 class="ab-order-info-title">Gmail.com PVA</h6> -->
+                        <!-- <h6 class="ab-order-info-title"></h6> -->
+                        <h6 class="ab-order-info-title">Google PVA</h6>
                         <img
                           src="./assests/image/gmail-small-icons0.svg"
                           alt="gmail icons"
@@ -230,9 +230,10 @@
                         <div class="ab-order-info-item">
                           <p class="ab-quantity-title">Quantity</p>
                           <input
-                            type="text"
+                            type="number"
                             class="ab-quantity-number"
                             value="100"
+                            id="quantity"
                           />
                         </div>
                         <div class="ab-order-info-item">
@@ -245,7 +246,7 @@
                         </div>
                         <div class="ab-order-info-item">
                           <p class="ab-due-title">Amount due</p>
-                          <span class="ab-order-price">$13.00</span>
+                          <span class="ab-order-price" id="totalAmount"></span>
                         </div>
                       </div>
                     </div>

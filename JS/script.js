@@ -30,5 +30,4 @@ footerButton.onclick = (event) => {
   });
 };
 
-console.log(1)
 
