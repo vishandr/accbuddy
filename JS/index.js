@@ -269,15 +269,8 @@ function buyButton(event){
   console.log(account);
   localStorage.setItem("account", JSON.stringify(account));
   // document.cookie = 'account_id='+id; // workable
-  document.cookie = 'account_id='+ id +';' + 'provider='+ account.provider +';' + 'price=' + account.price+';'
+  document.cookie = 'account_id='+ account.id +';' + 'provider='+ account.provider +';' + 'price=' + account.price
 };
-
-// export let account = function buyButton(event){
-//   let id = event.target.id;
-//   let account = allAccounts.find((acc) => acc.id == id);
-//   console.log(account);
-//   return account;
-// };
 
 let filteredAccounts;
 function updateFilteredBySearchAccounts(accountsList) {
