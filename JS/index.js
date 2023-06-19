@@ -268,6 +268,7 @@ function buyButton(event){
   let account = allAccounts.find((acc) => acc.id == id);
   console.log(account);
   localStorage.setItem("account", JSON.stringify(account));
+  document.cookie = 'account_id='+id;
 };
 
 // export let account = function buyButton(event){
