@@ -269,7 +269,7 @@ function buyButton(event){
   console.log(account);
   localStorage.setItem("account", JSON.stringify(account));
   // document.cookie = 'account_id='+id; // workable
-  document.cookie = 'account_id='+ account.id +';' + 'provider='+ account.provider +';' + 'price=' + account.price
+  document.cookie = '_account_id_='+ account.id +';' + 'provider='+ account.provider +';' + 'price=' + account.price
 };
 
 let filteredAccounts;

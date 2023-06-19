@@ -16,4 +16,5 @@ quantity.oninput = function() {
     totalAmount.innerHTML = totalAmount_sum
 }
 
+console.log('document.cookie = ')
 console.log(document.cookie)
