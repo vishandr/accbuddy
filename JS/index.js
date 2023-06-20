@@ -272,16 +272,10 @@ function buyButton(event){
   let account = allAccounts.find((acc) => acc.id == id);
   console.log(account);
   localStorage.setItem("account", JSON.stringify(account));
-  // document.cookie = 'account_id='+id; // workable
+  document.cookie = 'account_id='+id; // workable
   // setCookie(account.id, account.provider, {'price=': account.price, secure: true, samesite: lax })
-  document.cookie = 'account_id='+ account.id +';' + 'provider='+ account.provider +';' + 'price=' + account.price +';' + 'max-age=3600;'
+  // document.cookie = 'account_id='+ account.id +';' + 'provider='+ account.provider +';' + 'price=' + account.price +';' + 'max-age=3600;'
 };
-
-function deleteCookie(name) {
-  setCookie(name, "", {
-    'max-age': -1
-  })
-}
 
 let filteredAccounts;
 function updateFilteredBySearchAccounts(accountsList) {
