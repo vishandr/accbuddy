@@ -263,13 +263,39 @@ function createAccuntsListOutput(accountsList) {
         .reduce((a, b) => a + b, "");
 }
 
+function setCookie(name, value, options = {}) {
+  options = {
+    path: '/',
+    'max-age': 3600,
+    // add other defaults here if necessary
+    ...options
+  };
+
+  if (options.expires instanceof Date) {
+    options.expires = options.expires.toUTCString();
+  }
+
+  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+  for (let optionKey in options) {
+    updatedCookie += "; " + optionKey;
+    let optionValue = options[optionKey];
+    if (optionValue !== true) {
+      updatedCookie += "=" + optionValue;
+    }
+  }
+
+  document.cookie = updatedCookie;
+}
+
 function buyButton(event){
   let id = event.target.id;
   let account = allAccounts.find((acc) => acc.id == id);
   console.log(account);
   localStorage.setItem("account", JSON.stringify(account));
   // document.cookie = 'account_id='+id; // workable
-  document.cookie = '_account_id_='+ account.id +';' + 'provider='+ account.provider +';' + 'price=' + account.price
+  setCookie(account.id, account.provider, {'price=': account.price, secure: true, samesite: lax })
+  // document.cookie = '_account_id_='+ account.id +';' + 'provider='+ account.provider +';' + 'price=' + account.price
 };
 
 let filteredAccounts;
