@@ -273,7 +273,7 @@ function buyButton(event){
   console.log(account);
   localStorage.setItem("account", JSON.stringify(account));
   // document.cookie = 'account_id='+id; // workable
-  setCookie('name', 'John')
+  setCookie('id', account.id)
   // setCookie(account.id, account.provider, {'price=': account.price, secure: true, samesite: lax })
   // document.cookie = '_account_id_='+ account.id +';' + 'provider='+ account.provider +';' + 'price=' + account.price
 };
