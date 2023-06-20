@@ -271,9 +271,9 @@ function setCookie(name, value, options = {}) {
     ...options
   };
 
-  if (options.expires instanceof Date) {
-    options.expires = options.expires.toUTCString();
-  }
+  // if (options.expires instanceof Date) {
+  //   options.expires = options.expires.toUTCString();
+  // }
 
   let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
 
@@ -294,9 +294,16 @@ function buyButton(event){
   console.log(account);
   localStorage.setItem("account", JSON.stringify(account));
   // document.cookie = 'account_id='+id; // workable
-  setCookie(account.id, account.provider, {'price=': account.price, secure: true, samesite: lax })
+  setCookie('name', 'John', {'id': account.id, 'provider:': account.provider, 'price=': account.price, samesite: lax })
+  // setCookie(account.id, account.provider, {'price=': account.price, secure: true, samesite: lax })
   // document.cookie = '_account_id_='+ account.id +';' + 'provider='+ account.provider +';' + 'price=' + account.price
 };
+
+function deleteCookie(name) {
+  setCookie(name, "", {
+    'max-age': -1
+  })
+}
 
 let filteredAccounts;
 function updateFilteredBySearchAccounts(accountsList) {
