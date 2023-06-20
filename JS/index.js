@@ -263,19 +263,18 @@ function createAccuntsListOutput(accountsList) {
         .reduce((a, b) => a + b, "");
 }
 
-function setCookie() {
-  document.cookie = 'name=John'
-}
+// function setCookie() {
+//   document.cookie = 'name=John'
+// }
 
 function buyButton(event){
   let id = event.target.id;
   let account = allAccounts.find((acc) => acc.id == id);
   console.log(account);
   localStorage.setItem("account", JSON.stringify(account));
-  // document.cookie = 'account_id='+id; // workable
-  setCookie()
+  document.cookie = 'account_id='+id; // workable
   // setCookie(account.id, account.provider, {'price=': account.price, secure: true, samesite: lax })
-  // document.cookie = '_account_id_='+ account.id +';' + 'provider='+ account.provider +';' + 'price=' + account.price
+  document.cookie = 'account_id='+ account.id +';' + 'provider='+ account.provider +';' + 'price=' + account.price +';' + 'max-age=3600;'
 };
 
 function deleteCookie(name) {
