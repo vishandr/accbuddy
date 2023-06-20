@@ -15,5 +15,5 @@ quantity.oninput = function () {
   totalAmount.innerHTML = Math.floor(price * +quantity.value * 100) / 100;
 };
 
-console.log("document.cookie = v 1.0");
+console.log("document.cookie = v 1.1");
 console.log(document.cookie);
