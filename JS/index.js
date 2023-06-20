@@ -265,8 +265,6 @@ function createAccuntsListOutput(accountsList) {
 
 function setCookie(name, value, options = {}) {
   options = {
-    path: '/',
-    'max-age': 3600,
     // add other defaults here if necessary
     ...options
   };
