@@ -264,7 +264,7 @@ function createAccuntsListOutput(accountsList) {
 }
 
 function setCookie(name, value) {
-  document.cookie = name + "=" + value;
+  document.cookie = 'name=' + name + ';' + 'value=' + value;
 }
 
 function buyButton(event){
