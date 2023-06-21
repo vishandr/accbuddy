@@ -448,3 +448,15 @@ newOffers.onclick = () => {
   }
   updatePageWithFilteredAccounts(filteredByCategoryOutput, filteredAccounts);
 };
+
+// let response = fetch('https://api.accbuddy.com/public/', { mode: 'no-cors'});
+// console.log(response);
+
+let url = 'https://api.accbuddy.com/public/';
+let response = fetch(url, { mode: 'no-cors'});
+let result = response.json();
+console.log(result);
+
+let response1 = await fetch(url, { mode: 'no-cors'});
+let result1 = await response.json();
+console.log(result);
