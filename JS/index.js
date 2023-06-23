@@ -449,3 +449,39 @@ newOffers.onclick = () => {
   updatePageWithFilteredAccounts(filteredByCategoryOutput, filteredAccounts);
 };
 
+// fetch('https://jsonplaceholder.typicode.com/users' )
+fetch('https://api.accbuddy.com/public' )
+      .then(response => response.json())
+      .then(json => console.log(json))
+// let url = 'https://api.accbuddy.com/public';
+
+// reccomended by AI
+// fetch('https://api.accbuddy.com/public')
+//   .then(response => response.json())
+//   .then(data => {
+//     // Process the retrieved data here
+//     console.log(data);
+//   })
+//   .catch(error => {
+//     // Handle any errors that occur during the fetch request
+//     console.error('Error:', error);
+//   });
+
+
+
+// fetch('https://api.accbuddy.com/public', { mode: 'no-cors'}, {
+//   "fetchProductsPriceQty": {
+//   "timestamp": 0
+//   }
+//   } )
+//   .then(response => response.json())
+//   .then(json => console.log(json))
+//   .catch(function(error) {
+//     console.log(error);
+//   });
+
+  // fetch(url, { mode: 'no-cors'})
+  // .then((response) => {
+  //   console.log(response.json());
+  //   return response.json();
+  // })
